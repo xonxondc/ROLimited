@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "Roblox Trading & Catalog Price Tracker",
+  "version": "1.0.0",
+  "description": "Affiche l'historique des prix des Limiteds Roblox, RAP, valeurs Rolimon's et les meilleures affaires recommandées par la communauté YouTube.",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://www.roblox.com/*",
+    "https://economy.roblox.com/*",
+    "https://catalog.roblox.com/*",
+    "https://www.rolimons.com/*",
+    "https://api.rolimons.com/*",
+    "https://apis.roblox.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.roblox.com/catalog/*",
+        "https://www.roblox.com/*/catalog/*"
+      ],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Roblox Price Tracker",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["chart.min.js"],
+      "matches": ["https://www.roblox.com/*"]
+    }
+  ]
+}
